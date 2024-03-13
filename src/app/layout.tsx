@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import Link from 'next/link';
-
-const inter = Inter({ subsets: ['latin'] });
+import { roboto_mono } from './styles/fonts';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={roboto_mono.className}>
         <nav className="p-2">
           <ul className="flex justify-center gap-10">
             <li>
