@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
+        <nav className="p-2">
           <ul className="flex justify-center gap-10">
             <li>
               <Link href="/">home</Link>
@@ -37,7 +37,9 @@ export default function RootLayout({
             </li>
           </ul>
         </nav>
-        <div className="bg-indigo-50">{children}</div>
+        <div className="flex justify-center text-center bg-indigo-50">
+          {children}
+        </div>
       </body>
     </html>
   );
