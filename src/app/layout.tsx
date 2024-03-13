@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <nav>
-          <ul>
+          <ul className="flex justify-center gap-10">
             <li>
               <Link href="/">home</Link>
             </li>
@@ -37,7 +37,7 @@ export default function RootLayout({
             </li>
           </ul>
         </nav>
-        <div>{children}</div>
+        <div className="bg-indigo-50">{children}</div>
       </body>
     </html>
   );
