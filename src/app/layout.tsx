@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Link from 'next/link';
 import { roboto_mono } from './styles/fonts';
+import QueryProvider from './provider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -35,9 +36,11 @@ export default function RootLayout({
             </li>
           </ul>
         </nav>
-        <div className="flex justify-center text-center bg-indigo-50">
-          {children}
-        </div>
+        <QueryProvider>
+          <div className="flex justify-center text-center bg-indigo-50">
+            {children}
+          </div>
+        </QueryProvider>
       </body>
     </html>
   );
