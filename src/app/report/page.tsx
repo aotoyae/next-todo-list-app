@@ -1,5 +1,5 @@
-function page() {
-  return <div>report</div>;
-}
+const ReportPage = () => {
+  return <div>ReportPage</div>;
+};
 
-export default page;
+export default ReportPage;

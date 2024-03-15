@@ -1,5 +1,5 @@
-function page() {
-  return <div>todos-ssr</div>;
-}
+const TodosPageSSR = () => {
+  return <div>TodosPageSSR</div>;
+};
 
-export default page;
+export default TodosPageSSR;
