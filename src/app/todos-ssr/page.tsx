@@ -1,4 +1,5 @@
 import { Todo } from '@/types/todo';
+import Link from 'next/link';
 
 const TodosPageSSR = async () => {
   const response = await fetch('http://localhost:4000/todos', {
@@ -8,28 +9,34 @@ const TodosPageSSR = async () => {
   console.log(todos);
 
   let num = 0; // 리스트 넘버..
+  const TH_TD_ST = 'px-5 py-3';
 
   return (
     <div>
       <h1>todo list</h1>
-      <p>info</p>
+      <p>todo list table - SSR rendering</p>
+      <Link href="/report">
+        <button>➡️ to todo list report</button>
+      </Link>
       <table>
         <thead>
-          <tr>
-            <th>*</th>
-            <th>title</th>
-            <th>contents</th>
-            <th>state</th>
+          <tr className="border-b-2 border-white">
+            <th className={TH_TD_ST}>*</th>
+            <th className={TH_TD_ST}>title</th>
+            <th className={TH_TD_ST}>contents</th>
+            <th className={TH_TD_ST}>state</th>
           </tr>
         </thead>
         <tbody>
           {todos.map((todo: Todo) => {
             return (
-              <tr key={todo.id}>
-                <td>{++num}</td>
-                <td>{todo.title}</td>
-                <td>{todo.contents}</td>
-                <td>{todo.isDone ? 'finish' : 'ongoing'}</td>
+              <tr key={todo.id} className="border-b-2 border-white">
+                <td className={TH_TD_ST}>{++num}</td>
+                <td className={TH_TD_ST}>{todo.title}</td>
+                <td className={TH_TD_ST}>{todo.contents}</td>
+                <td className={TH_TD_ST}>
+                  {todo.isDone ? 'finish' : 'ongoing'}
+                </td>
               </tr>
             );
           })}
