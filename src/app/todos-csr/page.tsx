@@ -31,13 +31,28 @@ const TodosPageCSR = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newTodo),
       });
-
-      const todo = await response.json();
-      return todo;
     },
   });
 
-  const onSubmitHandler = (e: FormEvent) => {
+  const deleteTodoMutation = useMutation({
+    mutationFn: async (id) => {
+      await fetch(`http://localhost:3000/api/todos/${id}`, {
+        method: 'DELETE',
+      });
+    },
+  });
+
+  const toggleTodoMutation = useMutation({
+    mutationFn: async ({ id, isDone }: { id: string; isDone: boolean }) => {
+      await fetch(`http://localhost:3000/api/todos/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isDone }),
+      });
+    },
+  });
+
+  const addTodoHandler = (e: FormEvent) => {
     e.preventDefault();
     newTodoMudation.mutate(
       { title, contents },
@@ -50,18 +65,35 @@ const TodosPageCSR = () => {
             queryKey: ['todos'],
           });
         },
+        onError: () => {
+          alert('POST Todo Error');
+        },
       }
     );
   };
 
-  if (isLoading) return <div>Loding...</div>;
+  const toggleTodohandler = (id: string, isDone: boolean) => {
+    toggleTodoMutation.mutate(
+      { id, isDone: !isDone },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['todos'] });
+        },
+        onError: () => {
+          alert('PATCH Todo Error');
+        },
+      }
+    );
+  };
+
+  if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
 
   return (
     <div>
       <h1 className="text-[20px]">Add todo</h1>
       <p>todo list CRUD - CSR rendering</p>
-      <form onSubmit={onSubmitHandler}>
+      <form onSubmit={addTodoHandler}>
         <input
           value={title}
           placeholder="title"
@@ -81,6 +113,11 @@ const TodosPageCSR = () => {
               <h2>{todo.title}</h2>
               <p>{todo.contents}</p>
               {todo.isDone ? <p>finish</p> : <p>Ongoing</p>}
+              <input
+                type="checkbox"
+                checked={todo.isDone}
+                onClick={() => toggleTodohandler(todo.id, todo.isDone)}
+              />
               <button className="cursor-pointer">x</button>
             </li>
           );

@@ -23,6 +23,6 @@ export async function POST(request: Request) {
     const todo = await response.json();
     return Response.json({ todo });
   } catch (error) {
-    throw new Error('POST Todos Error');
+    throw new Error('POST Todo Error');
   }
 }
