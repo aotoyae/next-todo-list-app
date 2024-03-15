@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 const AboutPage = async () => {
-  const response = await fetch('http://localhost:4000/companyInfo', {
+  const response = await fetch('http://localhost:4000/company', {
     cache: 'force-cache',
   });
   const { name, desctiption, image } = await response.json();

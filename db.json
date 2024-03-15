@@ -1,5 +1,5 @@
 {
-  "companyInfo": {
+  "company": {
     "name": "aotoyae's todo-list",
     "desctiption": "Next-todo-list Project Copyright 2024. aotoyae all rights reserved.",
     "image": "https://i.namu.wiki/i/d1A_wD4kuLHmOOFqJdVlOXVt1TWA9NfNt_HA0CS0Y_N0zayUAX8olMuv7odG2FiDLDQZIRBqbPQwBSArXfEJlQ.webp"
@@ -45,12 +45,6 @@
       "id": "b204",
       "title": "a",
       "contents": "a",
-      "isDone": false
-    },
-    {
-      "id": "e9cb",
-      "title": "z",
-      "contents": "z",
       "isDone": false
     }
   ]
