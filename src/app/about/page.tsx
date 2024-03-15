@@ -6,12 +6,12 @@ const AboutPage = async () => {
   });
   const { name, desctiption, image } = await response.json();
 
-  if (!name) return <h1>loading</h1>;
-
   return (
     <div>
       <h1>about</h1>
-      <Image src={image} alt="company image" width={400} height={400} />
+      <div className="relative w-120 h-96 mx-auto">
+        <Image src={image} alt="company image" fill className="object-cover" />
+      </div>
       <h2>{name}</h2>
       <p>{desctiption}</p>
     </div>
