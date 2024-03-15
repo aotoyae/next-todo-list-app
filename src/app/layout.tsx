@@ -23,16 +23,16 @@ export default function RootLayout({
               <Link href="/">home</Link>
             </li>
             <li>
-              <Link href="/about">about-ssg</Link>
+              <Link href="/about">about</Link>
             </li>
             <li>
-              <Link href="/report">report-isr</Link>
+              <Link href="/report">report</Link>
             </li>
             <li>
-              <Link href="/todos-csr">todos-csr</Link>
+              <Link href="/todos-csr">add todo</Link>
             </li>
             <li>
-              <Link href="/todos-ssr">todos-ssr</Link>
+              <Link href="/todos-ssr">todo list</Link>
             </li>
           </ul>
         </nav>

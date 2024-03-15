@@ -13,7 +13,7 @@ const TodosPageSSR = async () => {
 
   return (
     <div>
-      <h1>todo list</h1>
+      <h1 className="text-[20px]">todo list</h1>
       <p>todo list table - SSR rendering</p>
       <Link href="/report">
         <button>➡️ to todo list report</button>

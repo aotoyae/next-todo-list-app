@@ -58,8 +58,8 @@ const TodosPageCSR = () => {
 
   return (
     <div>
-      <h1 className="text-[20px]">todos-csr</h1>
-      <p>info</p>
+      <h1 className="text-[20px]">Add todo</h1>
+      <p>todo list CRUD - CSR rendering</p>
       <form onSubmit={onSubmitHandler}>
         <input
           value={title}

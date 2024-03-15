@@ -8,7 +8,8 @@ const AboutPage = async () => {
 
   return (
     <div>
-      <h1>about</h1>
+      <h1 className="text-[20px]">about</h1>
+      <p>todo list about - SSG rendering</p>
       <div className="relative w-120 h-96 mx-auto">
         <Image src={image} alt="company image" fill className="object-cover" />
       </div>
