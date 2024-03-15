@@ -7,29 +7,33 @@ const TodosPageSSR = async () => {
   const todos = await response.json();
   console.log(todos);
 
-  let num = 0;
+  let num = 0; // 리스트 넘버..
 
   return (
     <div>
       <h1>todo list</h1>
       <p>info</p>
       <table>
-        <tr>
-          <th>*</th>
-          <th>title</th>
-          <th>contents</th>
-          <th>state</th>
-        </tr>
-        {todos.map((todo: Todo) => {
-          return (
-            <tr key={todo.id}>
-              <td>{++num}</td>
-              <td>{todo.title}</td>
-              <td>{todo.contents}</td>
-              <td>{todo.isDone ? 'finish' : 'ongoing'}</td>
-            </tr>
-          );
-        })}
+        <thead>
+          <tr>
+            <th>*</th>
+            <th>title</th>
+            <th>contents</th>
+            <th>state</th>
+          </tr>
+        </thead>
+        <tbody>
+          {todos.map((todo: Todo) => {
+            return (
+              <tr key={todo.id}>
+                <td>{++num}</td>
+                <td>{todo.title}</td>
+                <td>{todo.contents}</td>
+                <td>{todo.isDone ? 'finish' : 'ongoing'}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );
