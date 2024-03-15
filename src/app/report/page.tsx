@@ -1,4 +1,4 @@
-import { Todo } from '@/types/todo';
+import { Todo } from '@/types';
 
 const ReportPage = async () => {
   const response = await fetch('http://localhost:4000/todos', {

@@ -1,5 +1,6 @@
-import { Todo } from '@/types/todo';
 import Link from 'next/link';
+
+import type { Todo } from '@/types';
 
 const TodosPageSSR = async () => {
   const response = await fetch('http://localhost:4000/todos', {

@@ -1,8 +1,9 @@
 'use client';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import type { Todo, newTodo } from '@/types/todo';
 import { FormEvent, useState } from 'react';
+
+import type { Todo, newTodo } from '@/types';
 
 const TodosPageCSR = () => {
   const queryClient = useQueryClient();
