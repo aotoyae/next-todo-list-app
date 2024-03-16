@@ -34,20 +34,20 @@ const TodosPageCSR = () => {
     },
   });
 
-  const deleteTodoMutation = useMutation({
-    mutationFn: async (id) => {
-      await fetch(`http://localhost:3000/api/todos/${id}`, {
-        method: 'DELETE',
-      });
-    },
-  });
-
   const toggleTodoMutation = useMutation({
     mutationFn: async ({ id, isDone }: { id: string; isDone: boolean }) => {
       await fetch(`http://localhost:3000/api/todos/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ isDone }),
+      });
+    },
+  });
+
+  const deleteTodoMutation = useMutation({
+    mutationFn: async (id) => {
+      await fetch(`http://localhost:3000/api/todos/${id}`, {
+        method: 'DELETE',
       });
     },
   });
@@ -86,6 +86,17 @@ const TodosPageCSR = () => {
     );
   };
 
+  // const deleteTodohandler = (id: string) => {
+  //   deleteTodoMutation.mutate(id, {
+  //     onSuccess: () => {
+  //       queryClient.invalidateQueries({ queryKey: ['todos'] });
+  //     },
+  //     onError: () => {
+  //       alert('PATCH Todo Error');
+  //     },
+  //   });
+  // };
+
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
 
@@ -116,9 +127,22 @@ const TodosPageCSR = () => {
               <input
                 type="checkbox"
                 checked={todo.isDone}
-                onClick={() => toggleTodohandler(todo.id, todo.isDone)}
+                onChange={() => toggleTodohandler(todo.id, todo.isDone)}
               />
-              <button className="cursor-pointer">x</button>
+              <button
+                className="cursor-pointer"
+                onClick={() => {
+                  deleteTodoMutation.mutate(todo.id, {
+                    onSuccess: () => {
+                      queryClient.invalidateQueries({
+                        queryKey: ['todos'],
+                      });
+                    },
+                  });
+                }}
+              >
+                x
+              </button>
             </li>
           );
         })}
