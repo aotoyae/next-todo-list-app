@@ -45,7 +45,7 @@ const TodosPageCSR = () => {
   });
 
   const deleteTodoMutation = useMutation({
-    mutationFn: async (id) => {
+    mutationFn: async (id: string) => {
       await fetch(`http://localhost:3000/api/todos/${id}`, {
         method: 'DELETE',
       });
@@ -86,16 +86,16 @@ const TodosPageCSR = () => {
     );
   };
 
-  // const deleteTodohandler = (id: string) => {
-  //   deleteTodoMutation.mutate(id, {
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries({ queryKey: ['todos'] });
-  //     },
-  //     onError: () => {
-  //       alert('PATCH Todo Error');
-  //     },
-  //   });
-  // };
+  const deleteTodohandler = (id: string) => {
+    deleteTodoMutation.mutate(id, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['todos'] });
+      },
+      onError: () => {
+        alert('PATCH Todo Error');
+      },
+    });
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
@@ -131,15 +131,7 @@ const TodosPageCSR = () => {
               />
               <button
                 className="cursor-pointer"
-                onClick={() => {
-                  deleteTodoMutation.mutate(todo.id, {
-                    onSuccess: () => {
-                      queryClient.invalidateQueries({
-                        queryKey: ['todos'],
-                      });
-                    },
-                  });
-                }}
+                onClick={() => deleteTodohandler(todo.id)}
               >
                 x
               </button>
